@@ -1,6 +1,6 @@
 import {getRandomParseIntNumber, getRandomFloatNumber, getRandomArray} from "./util.js";
 import {typesOfHousing, timeForInspection, feuters, hotelsPhotos} from './data.js';
-
+import {advertTemplate} from './createElemnts.js'
 
 /* const getRandomParseIntNumber  = (firstNumber, endNumber) => {
     if(endNumber <= firstNumber) {
@@ -44,7 +44,7 @@ const getRandomArray = (array) => {
 
 
 
-const createAd = () => {
+/* const createAd = () => {
    return {
        author: {avatar: `img/avatars/user0${getRandomParseIntNumber(1, 8)}.png`},
        offer: {
@@ -68,11 +68,13 @@ const createAd = () => {
 
 const base = new Array(10).fill(null).map(() => {
     return createAd();
-});
+}); */
 
 
 
 // const arr = new Array(10).fill({});
 
-console.log(base);
+/* console.log(base);
+
+export {base, createAd}; */
 
