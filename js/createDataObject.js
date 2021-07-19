@@ -2,11 +2,13 @@ import {getRandomParseIntNumber, getRandomFloatNumber, getRandomArray} from "./u
 import {typesOfHousing, timeForInspection, feuters, hotelsPhotos} from './data.js';
 
 const createAdvertData = () => {
+    let locationX = getRandomFloatNumber(35.65, 35.70);
+    let locationY = getRandomFloatNumber(139.7, 139.80);
     return {
         author: {avatar: `img/avatars/user0${getRandomParseIntNumber(1, 8)}.png`},
         offer: {
             title: 'Объявление',
-            adress: `{location.x}, {location.y}`,
+            adress: `${locationX}, ${locationY}`,
             price: getRandomParseIntNumber(0, 99),
             type: typesOfHousing[getRandomParseIntNumber(0, 3)],
             rooms: getRandomParseIntNumber(0, 30),
@@ -18,8 +20,8 @@ const createAdvertData = () => {
             photos: getRandomArray(hotelsPhotos),
          },
          location: {
-             x: getRandomFloatNumber(35.65, 35.70),
-             y: getRandomFloatNumber(139.7, 139.80),
+             x: locationX,
+             y: locationY,
          },
     }
  };
