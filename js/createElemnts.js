@@ -41,6 +41,7 @@ advertsData.forEach((advert) => {
 });
 
 
+
 export {advertTemplate};
 
 
