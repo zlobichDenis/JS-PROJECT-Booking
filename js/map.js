@@ -63,12 +63,12 @@ const isElementVisible = (element, components) => {
     return true;
   };
 
-const setAdFeatures = (featuresElement, offer) => {
-    if (!isElementVisible(featuresElement, offer.features)) {
+const setAdFeatures = (templateFeuters, offer) => {
+    if (!isElementVisible(templateFeuters, offer.features)) {
       return;
     }
   
-    featuresElement.innerHTML = offer.features.map((feature) => {
+    templateFeuters.innerHTML = offer.features.map((feature) => {
       return `<li class="popup__feature popup__feature--${feature}"></li>`;
     }).join('');
   };
