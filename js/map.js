@@ -1,5 +1,5 @@
 import {advertsData} from "./createDataObject.js";
-import { advertTemplate } from "./createElemnts.js";
+import { advertTemplate} from "./createElemnts.js";
 
 
 const STARTING_LATITUDE = 35.6804;
@@ -20,18 +20,8 @@ const setUpMap = (advertsData) => {
         accessToken: 'pk.eyJ1IjoiZGVuaXN6bG9iaWNoIiwiYSI6ImNrcmNicHBneDUwOGIycHFwcTlkc2Jsc2oifQ.HUg9WBet0wHToyPhpUzRLg'
     }).addTo(map);
     renderCards(advertsData);
-/*     addMarkers(advertsData); */
 };
 
-/* const addMarkers = advertsData => {
-    advertsData.forEach (advert => {
-        L.marker([advert.location.x, advert.location.y]).addTo(map);
-        const popup = L.popup()
-        .setLatLng([advert.location.x, advert.location.y])
-        .setContent(createAdvert(advert))
-        .openOn(map);
-    });
-}; */
 
 const renderCards = (advertisements) => {
     advertisements.forEach(({author, location, offer}) => {
@@ -64,7 +54,26 @@ const renderCards = (advertisements) => {
     });
   };
 
-  const createCardElement = ({author, offer}) => {
+const isElementVisible = (element, components) => {
+    if (components.length === 0) {
+      element.setAttribute('style', 'visibility: hidden;');
+      return false;
+    }
+    element.setAttribute('style', 'visibility: visible;');
+    return true;
+  };
+
+const setAdFeatures = (featuresElement, offer) => {
+    if (!isElementVisible(featuresElement, offer.features)) {
+      return;
+    }
+  
+    featuresElement.innerHTML = offer.features.map((feature) => {
+      return `<li class="popup__feature popup__feature--${feature}"></li>`;
+    }).join('');
+  };
+
+const createCardElement = ({author, offer}) => {
     const cardElement = advertTemplate.cloneNode(true);
   
     cardElement.querySelector('.popup__title').textContent = offer.title;
@@ -75,8 +84,9 @@ const renderCards = (advertisements) => {
 
     cardElement.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
   
-    const features = cardElement.querySelector('.popup__features');
-    /* setAdFeatures(features, offer); */
+    const templateFeuters = cardElement.querySelector('.popup__features'); 
+    setAdFeatures(templateFeuters, offer);
+ 
   
     cardElement.querySelector('.popup__description').textContent = offer.description;
  

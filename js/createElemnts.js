@@ -6,6 +6,8 @@ const advertTemplate = document.querySelector('#card')
 
 const advertListFragment = document.createDocumentFragment();
 
+
+
 const map = document.querySelector('#map-canvas');
 
 advertsData.forEach((advert) => {
