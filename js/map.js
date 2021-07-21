@@ -4,7 +4,7 @@ import { advertTemplate} from "./createElemnts.js";
 
 const STARTING_LATITUDE = 35.6804;
 const STARTING_LONGITUDE = 139.7690;
-const STARING_ZOOM = 9;
+const STARING_ZOOM = 11;
 const MAIN_POINTER_WIDTH = 52;
 const POINTER_WIDTH = 40;
 
@@ -80,7 +80,7 @@ const createCardElement = ({author, offer}) => {
     cardElement.querySelector('.popup__text--address').textContent = offer.address;
     cardElement.querySelector('.popup__text--price').textContent = `${offer.price} ₽/ночь`;
     cardElement.querySelector('.popup__type').textContent = offer.type;;
-    cardElement.querySelector('.popup__text--capacity').textContent = `${offer.rooms} для ${offer.guests}`;
+    cardElement.querySelector('.popup__text--capacity').textContent = `${offer.rooms} комнат для ${offer.guests} гостей`;
 
     cardElement.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
   
@@ -99,18 +99,6 @@ const createCardElement = ({author, offer}) => {
   
     return cardElement;
   };
-
-  
-  
-
-
-
-
-
-
-
-
-
 
 setUpMap(advertsData);
 export{setUpMap}

@@ -6,10 +6,6 @@ const advertTemplate = document.querySelector('#card')
 
 const advertListFragment = document.createDocumentFragment();
 
-
-
-const map = document.querySelector('#map-canvas');
-
 advertsData.forEach((advert) => {
     const advertElem = advertTemplate.cloneNode(true);
     advertElem.querySelector('.popup__title').textContent = advert.offer.title;
