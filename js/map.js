@@ -1,6 +1,8 @@
 import {advertsData} from "./createDataObject.js";
-import { advertTemplate} from "./createElemnts.js";
-
+import {advertTemplate} from "./createElemnts.js";
+import {fillAddress,
+        activateFilter,
+       deactivateFilter } from './filter.js';
 
 const STARTING_LATITUDE = 35.6804;
 const STARTING_LONGITUDE = 139.7690;
@@ -99,6 +101,56 @@ const createCardElement = ({author, offer}) => {
   
     return cardElement;
   };
+
+  const removeMapMarkers = () => {
+    markers.forEach((marker) => {
+      marker.remove();
+    })
+  };
+  
+  const onMapLoad = () => {
+    activateMapForm();
+    fillAddress(STARTING_LATITUDE, STARTING_LONGITUDE);
+    onResetAdForm();
+    activateFilter();
+  };
+
+  const initMainPinMarker = () => {
+    const mainPinIcon = L.icon({
+      iconUrl: 'img/main-pin.svg',
+      iconSize: [MAIN_POINTER_WIDTH, MAIN_POINTER_WIDTH],
+      iconAnchor: [MAIN_POINTER_WIDTH / 2, MAIN_POINTER_WIDTH],
+    });
+  
+    const mainPinMarker = L.marker(
+      {
+        lat: STARTING_LATITUDE,
+        lng: STARTING_LONGITUDE,
+      },
+      {
+        draggable: true,
+        icon: mainPinIcon,
+      },
+    );
+    return mainPinMarker;
+  };
+  
+  const onPinMove = (evt) => {
+    const lat = evt.target.getLatLng().lat;
+    const long = evt.target.getLatLng().lng;
+    
+    fillAddress(lat, long);
+  };
+
+  const mainPinMarker = initMainPinMarker();
+  
+  mainPinMarker.addTo(map);
+  mainPinMarker.on('move', onPinMove);
+  
+  const resetMainPinMarker = () => {
+    mainPinMarker.setLatLng(L.latLng(STARTING_LATITUDE, STARTING_LONGITUDE));
+  };
+  
 
 setUpMap(advertsData);
 export{setUpMap}

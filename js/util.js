@@ -13,7 +13,6 @@ const getRandomFloatNumber = (firstNumber, endNumber) => {
         alert('Введите корректное значение');
         getNumbers();
     }
-    // return alert(parseInt(Math.random() * (endNumber - firstNumber) + firstNumber));
     return parseFloat(Math.random() * (endNumber - firstNumber) + firstNumber).toFixed(4);
 };
 
